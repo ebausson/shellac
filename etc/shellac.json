@@ -1,6 +1,12 @@
 {
   "actions": [
     {
+      "name": "download_mp3",
+      "title": "Download as mp3",
+      "command": "scripts/youtube_download \"$SHELLAC_TAB_URL\"",
+      "contexts": ["page"]
+    },
+    {
       "name": "edit_page",
       "title": "Edit the Source to this Page",
       "command": "scripts/edit \"$SHELLAC_TAB_URL\"",
@@ -15,8 +21,8 @@
     {
       "name": "download_mp3",
       "title": "Download as mp3",
-      "command": "scripts/youtube_download \"$SHELLAC_TAB_URL\"",
-      "contexts": ["page"]
+      "command": "scripts/youtube_download \"$SHELLAC_INFO_LINKURL\"",
+      "contexts": ["link"]
     },
     {
       "name": "mail_page_gnome",
