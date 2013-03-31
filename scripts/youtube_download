@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ $# -eq 1 ]; then
+    url=$1
+    historyfile=$HOME/.shellac/history.log
+    errorfile=$HOME/.shellac/error.log
+    mkdir "$HOME/.youtube-dl" 1>/dev/null 2>>$errorfile
+    echo "" >>$historyfile
+    echo "Youtube downloader" >>$historyfile
+    echo $(date +"%Y/%m/%d - %H:%M:%S__Starting download $url") >>$historyfile
+    filepath=$(youtube-dl --restrict-filenames -o "$HOME/.youtube-dl/%(extractor)s-%(autonumber)s-%(title)s" $url --get-filename)
+    filename=$(youtube-dl -t --restrict-filenames $url --get-filename)
+    resultpath="$HOME/$filename.mp3"
+    youtube-dl -q --restrict-filenames -o "$HOME/.youtube-dl/%(extractor)s-%(autonumber)s-%(title)s" $url 1>/dev/null 2>>$errorfile
+    echo $(date +"%Y/%m/%d - %H:%M:%S__Download complete $filepath") 1>>$historyfile
+    avconv -y -v error -i $filepath "$resultpath" 1>/dev/null 2>>$errorfile
+    rm $filepath 2>>$errorfile
+    echo $(date +"%Y/%m/%d - %H:%M:%S__Conversion complete $filename") 1>>$historyfile
+fi
