@@ -39,6 +39,7 @@ Shellac is alpha and targeted at developers.
 Requirements:
 
 * [Python](http://python.org/) (&gt;= 2.5)
+* packages youtube-dl ffmpeg libavcodec-extra-53 libav-tools
 
 To run the Shellac web app server, do this in a terminal:
 
